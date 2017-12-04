@@ -1,0 +1,39 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "Your notes, everywhere you want",
+  "main": "index.js",
+  "args": "['--debug=7000']",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeneralApathy/notes.git"
+  },
+  "keywords": [
+    "notes",
+    "share",
+    "markdown",
+    "nodejs"
+  ],
+  "author": "Emiliano Maccaferri",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/GeneralApathy/notes/issues"
+  },
+  "homepage": "https://github.com/GeneralApathy/notes#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.4.0",
+    "promise": "^8.0.1",
+    "randomstring": "^1.1.5",
+    "twig": "^1.10.5"
+  }
+}
