@@ -1,0 +1,21 @@
+{% extends "layouts/layout.twig" %}
+{% block head %}
+<script src="https://cdn.emilianomaccaferri.com/notes/js/auth.js"></script>
+{% endblock %}
+{% block content %}
+  <div class="main">
+    <h1 class="title"> Registrati </h1>
+    <form class="registration" onsubmit="javascript:register(); return false;">
+      <input type="text" placeholder="Username" id="user">
+      <input type="password" placeholder="Password" id="psw">
+      <input type="email" placeholder="Email" id="email">
+      <button class="reg" value="send"> Invia </button>
+      <div style="font-size: 0.4em; border-bottom: 2px solid #DADADA; display: inline-block;" id="message" ></div>
+      <p style="font-size: 0.4em; padding: 0;">
+         La password deve essere lunga 6 o più caratteri
+      <br> L'username non può contenere spazi, ma può invece possedere numeri e i caratteri -, _
+      </p>
+    </form>
+        <div class="loading"><i class="fas fa-sync"></i></div>
+  </div>
+{% endblock %}

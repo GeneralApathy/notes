@@ -1,0 +1,44 @@
+{% extends "layouts/panel.twig" %}
+{% block head %}
+<script src="/js/me.js" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+  <div class="opac"></div>
+  <div class="header">
+    <h1 class="title"> Hey, <span id="username"></span>! </h1>
+    <h2 class="subtitle"> Che cazzo ne so, forse ci metto un sottotitolo o boh, vabbeh </h2>
+  </div>
+  <div class="container">
+      <div class="box">
+        <h1> I tuoi files </h1>
+        <p>
+          Hey!<br>
+          Qui sotto sono elencati gli ultimi file che hai caricato, ma puoi anche crearne di nuovi dal menù sovrastante oppure cliccando qui sotto! <br>
+          (In realtà sono falsi, li ho messi qua giusto per testare e sto allungando tantissimo questo testo per testare il responsive)
+        </p>
+        <div class="menu">
+          <div class="item">
+            <h1> Titolo </h1>
+            <ul>
+              <li> Dimensione: <b>1MB</b></li>
+              <li> Data di upload: <b> Oggi </b> </li>
+              <p> Questa è un'anteprima del file, bla bla bla bla bla bla, ciao sono un file.docx </p>
+          </div>
+        </div>
+      </div>
+  <div class="box">
+    <h1> Classi </h1>
+    <p>
+      Qui sotto trovi elencate tutte le classi delle quali fai parte. (placeholder per ora)<br>
+    </p>
+    <div class="menu transparent">
+      <div class="item">
+        <h1> 4^F </h1>
+        <ul>
+          <li> Membri: <b>27</b></li>
+          <li> File totali: <b> 150 </b> </li>
+          <p> Descrizione della classe </p>
+      </div>
+    </div>
+</div>
+{% endblock %}

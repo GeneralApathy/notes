@@ -1,0 +1,37 @@
+{% extends "layouts/layout.twig" %}
+{% block head %}
+<script>
+
+  $(document).ready(function(){
+
+    $("#register").submit(function(e){
+
+      e.preventDefault();
+      login().then(function(success){
+
+        window.location = "/me"
+
+      })
+
+    })
+
+  })
+
+</script>
+{% endblock %}
+{% block content %}
+  <div class="main">
+    <h1 class="title"> Login </h1>
+    <form class="registration" id="register">
+      <input type="text" placeholder="Username" id="user">
+      <input type="password" placeholder="Password" id="psw">
+      <button class="reg" value="send"> Invia </button>
+      <div style="font-size: 0.4em; border-bottom: 2px solid #DADADA; display: inline-block;" id="message" >
+        {% if verified == "true" %}
+          Il tuo indirizzo e-mail è stato verificato, puoi ora eseguire il login
+        {% endif %}
+      </div>
+    </form>
+    <div class="loading"><i class="fas fa-sync"></i></div>
+  </div>
+{% endblock %}

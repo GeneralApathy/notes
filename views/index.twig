@@ -1,6 +1,67 @@
 {% extends "layouts/layout.twig" %}
 {% block head %}
+<script>
+
+  $(document).ready(function(){
+
+    var sessionid = $.Storage.get("sessionid");
+
+    if(sessionid){
+
+      $(".user").css({opacity: 1});
+      $("#username").append('<i class="fas fa-user" style="margin-right: 5px;"></i> <a href="/me" style="color: white;">' + $.Storage.get("username") + "</a> &bull; ")
+      $("#mail").append($.Storage.get("email"));
+      $("#void").empty();
+      $("#enter").html("Entra nel tuo profilo!")
+      $("#nah").hide();
+
+    }
+
+  })
+
+</script>
 {% endblock %}
 {% block content %}
-  Ciao sono un gratis bambino
+  <div class="main">
+    <h1 class="title"> Notes </h1>
+    <h2 class="subtitle"> I tuoi appunti, quando e dove vuoi </h2>
+    <div class="user"><span id="username"></span><span id="mail"></div>
+  </div>
+  <div class="container flexbox">
+    <div class="box">
+      <h1> Semplice </h1>
+      <p>
+        L'interazione con la web app è semplice e intuitiva.<br>
+        Puoi visionare o caricare gli appunti in tutta sicurezza e semplicità
+      </p>
+    </div>
+    <div class="box">
+      <h1> Veloce </h1>
+      <p>
+        Grazie al linguaggio nel quale sono scritte, sia RestAPI che web app sono estremamente performanti.<br>
+        La <a href="https://github.com/GeneralApathy/notes" target="_blank">repo ufficiale</a> del progetto si trova su GitHub.
+      </p>
+    </div>
+    <div class="box last">
+      <h1> Versatile </h1>
+      <p>
+        Essendo presente una RestAPI, alla quale ci si può <a href="/dev">registrare</a> e che si può utilizzare su qualsiasi dispositivo
+        e/o linguaggio di programmazione.<br>
+        La documentazione ufficiale è accessibile tramite <a href="/docs">questo endpoint</a>
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      <h1 id="enter"> Cosa aspetti? Registrati ora! </h1>
+      <p id="void">
+        La registrazione è completamente gratuita e potrai iniziare a utilizzare tutte le funzioni del sito dopo aver verificato il tuo account!<br>
+        Registrarsi è completamente gratuito e lo sarà per sempre, puoi comunque <a href="/donate">supportare il progetto</a> aiutando a coprire le spese per il server.
+      </p>
+      <a id="nah" style="color: white !important; text-decoration: none;" href="/register"><div class="register">Registrati!</div></a>
+      <div class="footer">
+        <p> Made with <i class="fas fa-heart"></i> and Node.js by Emiliano Maccaferri </p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
