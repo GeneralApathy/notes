@@ -1,12 +1,24 @@
 {% extends "layouts/panel.twig" %}
 {% block head %}
 <script src="/js/me.js" type="text/javascript"></script>
+<script>
+  $(document).ready(function(){
+
+    inPanel()
+      .then(function(){
+
+        console.log("ciao")
+
+      })
+
+  })
+</script>
 {% endblock %}
 {% block content %}
   <div class="opac"></div>
   <div class="header">
     <h1 class="title"> Hey, <span id="username"></span>! </h1>
-    <h2 class="subtitle"> Che cazzo ne so, forse ci metto un sottotitolo o boh, vabbeh </h2>
+    <h2 class="subtitle"> Frase random qui </h2>
   </div>
   <div class="container">
       <div class="box">
@@ -14,16 +26,27 @@
         <p>
           Hey!<br>
           Qui sotto sono elencati gli ultimi file che hai caricato, ma puoi anche crearne di nuovi dal menù sovrastante oppure cliccando qui sotto! <br>
-          (In realtà sono falsi, li ho messi qua giusto per testare e sto allungando tantissimo questo testo per testare il responsive)
         </p>
-        <div class="menu">
-          <div class="item">
-            <h1> Titolo </h1>
-            <ul>
-              <li> Dimensione: <b>1MB</b></li>
-              <li> Data di upload: <b> Oggi </b> </li>
-              <p> Questa è un'anteprima del file, bla bla bla bla bla bla, ciao sono un file.docx </p>
+        <div class="flexbox">
+          <div class="item" id="write">
+            <i class="fas fa-plus-circle fa-2x"></i>
+            <p>Scrivi</p>
           </div>
+          <a href='/all'><div class="item">
+            <i class="far fa-copy fa-2x"></i>
+            <p>Tutti i documenti</p>
+          </div></a>
+        </div>
+        <div class="flexbox" id="create">
+          <div class="item" style="width: 100%;">
+            <h1> Crea un nuovo file </h1>
+            <form method="POST" id="createFile">
+              <input type="text" id="filename" placeholder="Titolo del documento">
+              <button class="send" class="send" value="send"> Crea </button>
+            </form>
+          </div>
+        </div>
+        <div class="menu" id="appendable">
         </div>
       </div>
   <div class="box">

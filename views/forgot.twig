@@ -1,0 +1,32 @@
+{% extends "layouts/layout.twig" %}
+{% block head %}
+<script>
+
+  $(document).ready(function(){
+
+    $("#register").submit(function(e){
+
+      e.preventDefault();
+      forgot().then(function(success){
+
+        //bene ok grazie
+
+      })
+
+    })
+
+  })
+
+</script>
+{% endblock %}
+{% block content %}
+  <div class="main">
+    <h1 class="title"> Inserisci il tuo indirizzo e-mail </h1>
+    <form class="registration" id="register">
+      <input type="text" placeholder="Email" id="mail">
+      <button class="reg" value="send"> Invia </button>
+      <div style="font-size: 0.4em; border-bottom: 2px solid rgb(218, 218, 218); display: block;" id="message"></div>
+    </form>
+    <div class="loading"><i class="fas fa-sync"></i></div>
+  </div>
+{% endblock %}
