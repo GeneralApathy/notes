@@ -7,6 +7,8 @@ yarn-error.log*
 
 config.json
 
+files/*
+
 # Runtime data
 pids
 *.pid
