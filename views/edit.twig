@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.emilianomaccaferri.com/notes/css/editor.css" rel="stylesheet" type="text/css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+<script src="https://cdn.emilianomaccaferri.com/macca/static/js/moment.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="/js/storage.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/panel.js"></script>
 <script src="/js/editor.js"></script>
+<script src="/js/operations.js"></script>
 <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
   $(document).ready(function(){
 
+    totalEditor();
+
     init().then(function(editor){
 
-      console.log(editor)
+      $(document).keydown(function(e) {
+
+              if (e.keyCode == 83 && e.ctrlKey) {
+                  e.preventDefault();
+                  $("#saved").animate({opacity: 1}, "fast");
+                  editFile($.Storage.get("id"), editor.root.innerHTML, window.location.pathname.split('/')[2]);
+
+                  setTimeout(function(){
+
+                    $("#saved").animate({opacity: 0}, "fast");
+
+                  }, 3500)
+
+              }
+          });
+
+      $("#save").click(function(){
+
+        editFile($.Storage.get("id"), editor.root.innerHTML, window.location.pathname.split('/')[2]);
+
+      })
 
       setInterval(function(){
 
         editFile($.Storage.get("id"), editor.root.innerHTML, window.location.pathname.split('/')[2])
 
-      }, 1000 * 10) // updates every thirty secs
+      }, 300000) // updates every 5 mins
 
     })
 
@@ -31,13 +58,20 @@
     <div id="ed">
     <div id="editor">{{stuff}}</div>
   </div>
-  <div class="files">
-    <h1> Qui ci vanno altre robe </h1>
-    <!--<p id="last"> Ultimo salvataggio <span id="time"></span></p>
-    <h1>Altri files</h1>
-    <div class="file">
-      <h1> Titolo </h1>
-    </div>-->
+  <div class="files" id="appendable">
+    <h1> {{ftitle}} </h1>
+    <ul>
+      <li>Ultimo salvataggio: <span id="time"></span></li>
+      <li id="words"> Parole: <span id="w"></span></li>
+    </ul>
+
+    <div id="save">
+      Salva
+    </div>
+    <p> Ricorda che puoi salvare il file anche usando CTRL + S </p>
+    <div id="saved">
+      Salvato!
+    </div>
   </div>
 </div>
 </body>

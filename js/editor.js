@@ -1,8 +1,14 @@
+var current;
+
 var editFile = function(userid, content, filename){
 
   return new Promise(
 
     function(resolve, reject){
+
+      if(current == content){
+        return reject(false)
+      }
 
       $.post("https://appunti.emilianomaccaferri.com/api/editPublicFile", {
 
@@ -14,8 +20,9 @@ var editFile = function(userid, content, filename){
       }).done(function(data){
 
         console.log(data)
+        current = content;
         $("#time").empty();
-        $("#time").append("<p> ora </p>");
+        $("#time").append(moment().format("DD/MM/YY, h:mm:ss a"));
 
       })
 
@@ -73,3 +80,21 @@ var init = function(){
   )
 
 }
+
+$(function(){
+
+  $("#time").append(moment().format("DD/MM/YY, h:mm:ss a"));
+  var total = $("#editor").text().split(' ').length;
+  $("#w").append("<b> " + total + " </b>");
+
+  var text = document.getElementById("editor");
+
+  text.addEventListener("input", function(){
+
+    var total = $("#editor").text().split(' ').length;
+    $("#w").empty();
+    $("#w").append("<b> " + total + " </b>");
+
+  });
+
+})
