@@ -39,5 +39,8 @@
     "randomstring": "^1.1.5",
     "string-to-stream": "^1.1.0",
     "twig": "^1.10.5"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.0"
   }
 }

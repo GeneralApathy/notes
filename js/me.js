@@ -13,8 +13,13 @@ $(document).on('click', '.dl', function(){
 $(document).ready(function(){
 
   var togg = 0;
+  var togg1 = 0;
+  var togg2 = 0;
 
   $("#create").hide();
+  $("#class_creation").hide();
+  $("#class_join").hide();
+  $(".class_created").hide();
 
   $("#createFile").submit(function(ev){
 
@@ -53,14 +58,85 @@ $(document).ready(function(){
 
   $("#username").append($.Storage.get("username"))
 
+  $("#join_class").submit(function(e){
+
+    e.preventDefault();
+    var key = $("#key_").val().trim();
+    joinClass(key)
+      .then(stuff => {
+
+        console.log(stuff)
+        $("#operation").html("Sei entrato nella classe <b>" + stuff.name + "</b>")
+        $("#url").html("<a style='color: black' href='https://appunti.emilianomaccaferri.com/class/"+stuff.url+"'>Link alla classe (che se lo clicchi non funziona)</a>")
+        $("#key").html("<b>Ok bene, ora devo fare il resto della roba</b>")
+        $(".class_created").slideDown();
+
+      })
+
+      .catch(function(err){
+
+        if(err.status == 404)
+          alert("Codice invalido...")
+        else
+          alert("Ti sei già registrato a questa classe.")
+
+      })
+
+  })
+
+  $("#sendClass").submit(function(e){
+
+    e.preventDefault();
+    var name = $("#classname").val().trim();
+    createClass(name)
+      .then(stuff => {
+
+        $("#operation").html("Hai creato la classe <b>" + name + "</b>")
+        $("#url").html("<a style='color: black' href='https://appunti.emilianomaccaferri.com/class/"+stuff.url+"'>Link alla classe</a>")
+        $("#key").html("<b>Key della classe: "+stuff.key+"</b>")
+        $(".class_created").slideDown();
+
+      })
+
+      .catch(err => {
+
+        console.log(err)
+        alert("Errore imprevisto...")
+
+      })
+
+  })
+
   $("#write").click(function(){
     if(!togg){
       $("#create").slideDown();
       togg = 1;
     }else{
       $("#create").slideUp();
-      togg = 0;me
+      togg = 0;
     }
+  })
+
+  $("#class").click(function(){
+    if(!togg){
+      $("#class_creation").slideDown();
+      togg1 = 1;
+    }else{
+      $("#class_creation").slideUp();
+      togg1 = 0;
+    }
+
+  })
+
+  $("#join").click(function(){
+    if(!togg){
+      $("#class_join").slideDown();
+      togg2 = 1;
+    }else{
+      $("#class_join").slideUp();
+      togg2 = 0;
+    }
+
   })
 
 })

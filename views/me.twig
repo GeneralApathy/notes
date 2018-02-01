@@ -4,18 +4,21 @@
 <script>
   $(document).ready(function(){
 
-    inPanel()
-      .then(function(){
-
-        console.log("ciao")
-
-      })
+    inPanel();
+    getClasses();
 
   })
 </script>
 {% endblock %}
 {% block content %}
   <div class="opac"></div>
+  <div class="class_created">
+    <span id="operation"></span>
+    <ul>
+      <li id="key"> </li>
+      <li id="url"> </li>
+    </ul>
+  </div>
   <div class="header">
     <h1 class="title"> Hey, <span id="username"></span>! </h1>
     <h2 class="subtitle"> Frase random qui </h2>
@@ -54,13 +57,42 @@
     <p>
       Qui sotto trovi elencate tutte le classi delle quali fai parte. (placeholder per ora)<br>
     </p>
-    <div class="menu transparent">
-      <div class="item">
+    <div id="classes" class="menu transparent">
+      <!--<div class="item">
         <h1> 4^F </h1>
         <ul>
           <li> Membri: <b>27</b></li>
           <li> File totali: <b> 150 </b> </li>
+        </ul>
           <p> Descrizione della classe </p>
+      </div>-->
+      <div class="flexbox">
+        <div class="item" id="class">
+          <i class="fas fa-plus-circle fa-2x"></i>
+          <p>Crea una nuova classe</p>
+        </div>
+        <div class="item" id="join">
+          <i class="fas fa-sign-in-alt fa-2x"></i>
+          <p>Entra in una classe</p>
+        </div>
+      </div>
+      <div class="flexbox" id="class_creation">
+        <div class="item" style="width: 100%;">
+          <h1> Crea una nuova classe </h1>
+          <form method="POST" id="sendClass">
+            <input type="text" id="classname" placeholder="Nome della classe">
+            <button class="send" class="send" value="send"> Crea </button>
+          </form>
+        </div>
+      </div>
+      <div class="flexbox" id="class_join">
+        <div class="item" style="width: 100%;">
+          <h1> Entra in una nuova classe </h1>
+          <form method="POST" id="join_class">
+            <input type="text" id="key_" placeholder="Key della classe">
+            <button class="send" class="send" value="send"> Entra </button>
+          </form>
+        </div>
       </div>
     </div>
 </div>
